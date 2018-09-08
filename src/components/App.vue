@@ -1,22 +1,32 @@
 <template>
     <div>
-        <div v-for="week in weeks" :key="week.index">
-            Week
-            <div v-for="day in week" :key="day.index">
-                {{ day }}
+        <div id="day-bar">
+            <div>Isnin</div>
+            <div>Selasa</div>
+            <div>Rabu</div>
+            <div>Khamis</div>
+            <div>Jumaat</div>
+            <div>Sabtu</div>
+            <div>Ahad</div>
+        </div>
+        <div id="calendar">
+            <div v-for="week in weeks" :key="week.index" class="calendar-week">            
+                <calendar-day v-for="day in week" :key="day.index" :day="day"></calendar-day>
             </div>
         </div>
     </div>
 </template>
 <script>
-export default {
-    data() {
-        return {
-            month: 5,
-            year: 2017
-        }
-    },
+import CalendarDay from './CalendarDay.vue';
+
+export default {    
     computed: {
+        year() {
+            return this.$store.state.currentYear;
+        },
+        month() {
+            return this.$store.state.currentMonth;
+        },
         days() {
 
             //Generating all days in current month
@@ -70,6 +80,9 @@ export default {
 
             return weeks;
         }
+    },
+    components: {
+        CalendarDay
     }
 }
 </script>
