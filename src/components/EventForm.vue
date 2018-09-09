@@ -25,9 +25,10 @@ export default {
         },
         create() {
             if (this.description.length > 0) {
-                this.$store.commit('addEvent', this.description);
-                this.description = "";
-                this.close();
+                this.$store.dispatch('addEvent', this.description).then(_ => {
+                    this.description = "";
+                    this.close();
+                });                
             }            
         }
     },
