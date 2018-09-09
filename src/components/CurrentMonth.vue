@@ -15,6 +15,7 @@ export default {
             } else {     
                 this.$store.commit('setCurrentMonth', this.month + 1);
             }
+            this.$store.commit('eventFormActive', false);
         },
         dec() {
             if (this.month === 1) {
@@ -22,7 +23,8 @@ export default {
                 this.$store.commit('setCurrentMonth', 12);
             } else {
                 this.$store.commit('setCurrentMonth', this.month - 1);
-            }            
+            }
+            this.$store.commit('eventFormActive', false);
         }
     },
     computed: {
